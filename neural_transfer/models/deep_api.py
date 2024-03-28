@@ -8,7 +8,7 @@ import argparse
 import pkg_resources
 import os
 import re
-import pickle
+import pickle  # nosec
 import time
 
 import neural_transfer.config as cfg
