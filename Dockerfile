@@ -34,7 +34,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          wget \
          python3-setuptools \
          python3-pip \
-         python3-wheel && \ 
+         python3-wheel && \
+         unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     python --version && \
@@ -84,11 +85,11 @@ RUN git clone -b $branch https://github.com/ai4os-hub/fast-neural-transfer && \
     cd ..
 
 # Download weights
+# use original weights from https://github.com/pytorch/examples/tree/main/fast_neural_style
 RUN cd /srv/fast-neural-transfer/models && \
-    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=candy.pth' --output candy.pth && \
-    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=mosaic.pth' --output mosaic.pth && \
-    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=rain_princess.pth' --output rain_princess.pth && \
-    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=udnie.pth' --output udnie.pth && \
+    curl -L https://www.dropbox.com/s/lrvwfehqdcxoza8/saved_models.zip?dl=1 --output saved_models.zip && \
+    unzip -jo saved_models.zip && \
+    rm saved_models.zip
     cd /srv
 
 # Open ports (deepaas, monitoring, ide)
