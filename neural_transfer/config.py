@@ -28,7 +28,8 @@ IMG_STYLE_DIR = os.path.join(IN_OUT_BASE_DIR, 'neural_transfer/dataset/style_ima
 MODEL_DIR = os.path.join(IN_OUT_BASE_DIR, 'models')
 
 neural_RemoteSpace = 'rshare:/neural_transfer/'
-neural_RemoteShare = 'https://nc.deep-hybrid-datacloud.eu/s/9Qp4mxNBaLKmqAQ/download?path=%2F&files='
+#neural_RemoteShare = 'https://nc.deep-hybrid-datacloud.eu/s/9Qp4mxNBaLKmqAQ/download?path=%2F&files='
+neural_RemoteShare = 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files='
 
 REMOTE_IMG_DATA_DIR = os.path.join(neural_RemoteSpace, 'dataset/training_dataset/')
 REMOTE_IMG_STYLE_DIR = os.path.join(neural_RemoteSpace, 'styles/')

@@ -53,19 +53,26 @@ def download_pred_model(name):
                         float(count * block_size)))
         sys.stdout.flush()
 
-    file_path, _ = urllib.request.urlretrieve(remote_model_path, file_path, _progress)
-    statinfo = os.stat(file_path)
-    
     if os.path.exists(file_path):
-        print('[INFO] Successfully downloaded %s model, %d bytes' % 
-               (name, statinfo.st_size))
+        statinfo = os.stat(file_path)
+        print('[INFO] Model %s is available locally, %d bytes' % 
+              (name, statinfo.st_size))
         dest_exist = True
-        error_out = None
+        error_out = None       
     else:
-        dest_exist = False
-        error_out = '[ERROR, url_download()] Failed to download ' + name + \
-                    ' model from ' + url_path
-        
+        file_path, _ = urllib.request.urlretrieve(remote_model_path, file_path, _progress)
+        statinfo = os.stat(file_path)
+    
+        if os.path.exists(file_path):
+            print('[INFO] Successfully downloaded %s model, %d bytes' % 
+                   (name, statinfo.st_size))
+            dest_exist = True
+            error_out = None
+        else:
+            dest_exist = False
+            error_out = '[ERROR, url_download()] Failed to download ' + name + \
+                        ' model from ' + url_path
+
     return dest_exist, error_out
 
 

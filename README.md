@@ -1,7 +1,7 @@
 DEEP Open Catalogue: Neural Transfer
 ==============================
 
-[![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/neural_transfer/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/neural_transfer/job/master)
+[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/fast-neural-transfer/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/fast-neural-transfer/job/main/)
 
 **Author:** [Silke Donayre](https://github.com/SilkeDH) (KIT)
 
@@ -34,7 +34,7 @@ This is an example of how to perform neural transfer. This module allows you to 
 To start using this framework clone the repo:
 
 ```bash
-git clone https://github.com/deephdc/neural_transfer
+git clone https://github.com/ai4os-hub/fast-neural-transfer
 cd neural_transfer
 pip install -e .
 ```
@@ -46,12 +46,12 @@ and open http://0.0.0.0:5000/ui and look for the methods belonging to the `neura
 
 ### Docker installation
 
-We have also prepared a ready-to-use [Docker container](https://github.com/deephdc/DEEP-OC-neural_transfer) to
+We have also prepared a ready-to-use [Docker container](https://github.com/ai4os-hub/fast-neural-transfer) to
 run this module. To run it:
 
 ```bash
 docker search deephdc
-docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-neural_transfer
+docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 ai4oshub/fast-neural-transfer
 ```
 
 Now open http://0.0.0.0:5000/ui and look for the methods belonging to the `neural_transfer` module.
