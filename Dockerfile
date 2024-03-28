@@ -22,13 +22,7 @@ LABEL version='0.0.1'
 # A module to apply neural transfer in pytorch.
 
 # What user branch to clone [!]
-ARG branch=test
-
-# If to install JupyterLab
-ARG jlab=true
-
-# Oneclient version, has to match OneData Provider and Linux version
-ARG oneclient_ver=19.02.0.rc2-1~xenial
+ARG branch=main
 
 # Install ubuntu updates and python related stuff
 # link python3 to python, pip3 to pip, if needed
@@ -43,17 +37,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          python3-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/* && \
-    if [ ! -e /usr/bin/pip ]; then \
-       ln -s /usr/bin/pip3 /usr/bin/pip; \
-    fi; \
-    if [ ! -e /usr/bin/python ]; then \
-       ln -s /usr/bin/python3 /usr/bin/python; \
-    fi && \
     python --version && \
     pip --version
 
+# Update python packages
+# [!] Remember: DEEP API V2 only works with python>=3.6
+RUN python3 --version && \
+    pip3 install --no-cache-dir --upgrade pip "setuptools<60.0.0" wheel
 
 # Set LANG environment
 ENV LANG C.UTF-8
@@ -74,53 +64,36 @@ RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
-# INSTALL oneclient for ONEDATA
-RUN curl -sS  http://get.onedata.org/oneclient-1902.sh  | bash -s -- oneclient="$oneclient_ver" && \
-    apt-get clean && \
-    mkdir -p /mnt/onedata && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/* 
-
-# Install DEEPaaS from PyPi
-# Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir \
-    'deepaas>=1.0.1' \
-    flaat && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
-
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
-# EXPERIMENTAL: install deep-start script
-# N.B.: This repository also contains run_jupyter.sh
-RUN git clone https://github.com/deephdc/deep-start /srv/.deep-start && \
-    ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start && \
-    ln -s /srv/.deep-start/run_jupyter.sh /usr/local/bin/run_jupyter
+# Initialization scripts
+# deep-start can install JupyterLab or VSCode if requested
+RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
+    ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start
 
-# Install JupyterLab
-ENV JUPYTER_CONFIG_DIR /srv/.deep-start/
 # Necessary for the Jupyter Lab terminal
 ENV SHELL /bin/bash
-RUN if [ "$jlab" = true ]; then \
-       # by default has to work (1.2.0 wrongly required nodejs and npm)
-       pip install --no-cache-dir jupyterlab ; \
-    else echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Install user app:
-RUN git clone -b $branch https://github.com/deephdc/neural_transfer && \
-    cd  neural_transfer && \
+RUN git clone -b $branch https://github.com/ai4os-hub/fast-neural-transfer && \
+    cd  fast-neural-transfer && \
     pip install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
     cd ..
 
+# Download weights
+RUN cd /srv/fast-neural-transfer/models && \
+    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=candy.pth' --output candy.pth && \
+    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=mosaic.pth' --output mosaic.pth && \
+    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=rain_princess.pth' --output rain_princess.pth && \
+    curl -L 'https://share.services.ai4os.eu/index.php/s/6KLEBcpgkw98rNQ/download?path=%2F&files=udnie.pth' --output udnie.pth && \
+    cd /srv
 
-# Open DEEPaaS port
-EXPOSE 5000
+# Open ports (deepaas, monitoring, ide)
+EXPOSE 5000 6006 8888
 
-# Open Monitoring and Jupyter ports
-EXPOSE 6006  8888
+# Launch deepaas
+CMD ["deepaas-run", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
 
-# Account for OpenWisk functionality (deepaas >=0.4.0) + proper docker stop
-CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]

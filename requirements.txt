@@ -1,15 +1,36 @@
-# backwards compatibility
-pathlib2
+# The following is added by the migration.sh script #
+# Versions are taken from the relevant docker image #
+#
+# For old modules one may need to add:
+# aiohttp~=3.6.0
+# flask~=1.1.0
+# Jinja2~=2.11.0
+# deepaas>=1.3.0
+# flaat~=0.8.0
 
-# external requirements
-Sphinx
-python-dotenv>=0.5.1
+pathlib2~=2.3.5
+Sphinx~=3.0.4
+python-dotenv~=0.13.0
+webargs~=5.5.3
+marshmallow~=3.6.0
+deepaas>=1.3.0
+flaat~=0.8.0
+Pillow~=6.1.0
+fpdf~=1.7.2
+aiohttp~=3.6.0
+flask~=1.1.0
+Jinja2~=2.11.0
 
-webargs>=5.5.2
-marshmallow
-
-deepaas>=1.0.0
-flaat>=0.5.1
-
-Pillow == 6.1.0
-fpdf==1.7.2
+# Below is the old content of requirements.txt
+#
+## backwards compatibility
+#pathlib2
+## external requirements
+#Sphinx
+#python-dotenv>=0.5.1
+#webargs>=5.5.2
+#marshmallow
+#deepaas>=1.0.0
+#flaat>=0.5.1
+#Pillow == 6.1.0
+#fpdf==1.7.2
