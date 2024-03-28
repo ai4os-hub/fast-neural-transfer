@@ -26,7 +26,8 @@
     "sources": {
 		"dockerfile_repo": "https://github.com/ai4os-hub/fast-neural-transfer",
 		"docker_registry_repo": "ai4oshub/fast-neural-transfer",
-		"code": "https://github.com/ai4os-hub/fast-neural-transfer"
+		"code": "https://github.com/ai4os-hub/fast-neural-transfer",
+        "ai4_template": "ai4-template/v1.0.0"
 	},
     "continuous_integration": {
         "build_status_badge": "https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/fast-neural-transfer/main",

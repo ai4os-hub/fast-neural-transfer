@@ -1,4 +1,4 @@
-DEEP Open Catalogue: Neural Transfer
+Fast Neural Transfer
 ==============================
 
 [![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/fast-neural-transfer/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/fast-neural-transfer/job/main/)
@@ -57,7 +57,7 @@ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 ai4oshub/fast-neural-trans
 Now open http://0.0.0.0:5000/ui and look for the methods belonging to the `neural_transfer` module.
 
 
-You can find more information about it in the [DEEP Marketplace](https://marketplace.deep-hybrid-datacloud.eu/modules/deep-oc-neural_transfer.html).
+You can find more information about it in the [AI4OS Hub](https://dashboard.cloud.ai4eosc.eu).
 
 ## Predict
 
@@ -70,7 +70,7 @@ If you want to add a new style go to http://0.0.0.0:5000/ui and look for the `TR
 There are two ways. The first one is by putting the images direct into the project folder. To do this, you need to place the following data in the following folders:
 
 ```
-neural_transfer
+fast-neural-transfer
     └──  data                     <- Put your style image here.             
          └── raw 
              └── training_dataset <- Create the training_dataset folder and put the training images inside.

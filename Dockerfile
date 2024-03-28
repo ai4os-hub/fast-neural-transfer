@@ -89,7 +89,7 @@ RUN git clone -b $branch https://github.com/ai4os-hub/fast-neural-transfer && \
 RUN cd /srv/fast-neural-transfer/models && \
     curl -L https://www.dropbox.com/s/lrvwfehqdcxoza8/saved_models.zip?dl=1 --output saved_models.zip && \
     unzip -jo saved_models.zip && \
-    rm saved_models.zip
+    rm saved_models.zip && \
     cd /srv
 
 # Open ports (deepaas, monitoring, ide)
