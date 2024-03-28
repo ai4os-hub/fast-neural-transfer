@@ -1,5 +1,5 @@
-Fast Neural Transfer
-==============================
+Fast Neural Transfer (Artistic Style Transfer)
+==============================================
 
 [![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/fast-neural-transfer/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/fast-neural-transfer/job/main/)
 
@@ -7,7 +7,7 @@ Fast Neural Transfer
 
 **Project:** This work is part of the [DEEP Hybrid-DataCloud](https://deep-hybrid-datacloud.eu/) project that has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 777435.
 
-This is an example of how to perform neural transfer. This module allows you to take the content of an image and reproduce it with a new artistic style using the style of a different image. The code is based on the [Faster Neural Style Pytorch example](https://github.com/pytorch/examples/tree/master/fast_neural_style) that implements the method described in [Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155) developed by Justin Johnson, Alexandre Alahia and Li Fei-Fei. This module returns as a prediction either the new styled image or a pdf containing the input and the result image. You can also train a new network to have a add a new style.<br/><br/>
+This is an example of how to perform neural transfer. This module allows you to take the content of an image and reproduce it with a new artistic style using the style of a different image. The code is based on the [Fast Neural Style Pytorch example](https://github.com/pytorch/examples/tree/master/fast_neural_style) that implements the method described in [Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155) developed by Justin Johnson, Alexandre Alahia and Li Fei-Fei. This module returns as a prediction either the new styled image or a pdf containing the input and the result image. You can also train a new network to have a add a new style.<br/><br/>
 
 <p align="center">
 <img src="./reports/figures/deep_examples.png" width="820">
@@ -50,14 +50,14 @@ We have also prepared a ready-to-use [Docker container](https://github.com/ai4os
 run this module. To run it:
 
 ```bash
-docker search deephdc
+docker search ai4oshub
 docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 ai4oshub/fast-neural-transfer
 ```
 
 Now open http://0.0.0.0:5000/ui and look for the methods belonging to the `neural_transfer` module.
 
 
-You can find more information about it in the [AI4OS Hub](https://dashboard.cloud.ai4eosc.eu).
+You can find more information about it in the [AI4OS Hub](https://dashboard.cloud.ai4eosc.eu), "Artistic Style Transfer"
 
 ## Predict
 

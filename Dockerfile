@@ -34,7 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          wget \
          python3-setuptools \
          python3-pip \
-         python3-wheel && \
+         python3-wheel \
          unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \

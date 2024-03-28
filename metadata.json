@@ -1,5 +1,5 @@
 {
-    "title": "Artistic style transfer",
+    "title": "Artistic Style Transfer",
     "summary": "A module to apply artistic style transfer using pytorch.",
     "description": [
            "This is neural_transfer application using DEEPaaS API.\n",
