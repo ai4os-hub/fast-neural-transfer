@@ -1,0 +1,22 @@
+metadata_version: 2.0.0
+title: Artistic Style Transfer
+summary: A module to apply artistic style transfer using pytorch.
+description: '"This is neural_transfer application using DEEPaaS API.\n" "The module allows you to take the content of an image and reproduce it with a new artistic style using the style of a different image." "The code is based on the <a href=https://github.com/pytorch/examples/tree/master/fast_neural_style>Faster Neural Style Pytorch example<\/a> " "that implements the method described in " "\"Perceptual Losses for Real-Time Style Transfer and Super-Resolution\" developed by Justin Johnson, Alexandre Alahia and Li Fei-Fei [1]." "" "**References**\n" "[1] Justin Johnson, Alexandre Alahi, Li Fei-Fei, Perceptual Losses for Real-Time Style Transfer and Super-Resolution, " "<a href=https://arxiv.org/abs/1603.08155>arXiv:1603.08155 [cs.CV]<\/a>" ""'
+dates:
+  created: '2020-04-09'
+  updated: '2024-08-12'
+links:
+  source_code: https://github.com/ai4os-hub/fast-neural-transfer
+  docker_image: ai4oshub/fast-neural-transfer
+  ai4_template: ai4-template/v1.0.0
+tags:
+- pytorch
+- image style transfer
+- trainable
+- inference
+- pre-trained
+- api-v2
+tasks: []
+categories: []
+libraries:
+- Pytorch
